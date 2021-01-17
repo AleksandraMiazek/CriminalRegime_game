@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criminal Regime Game</title>
+    <link rel="shortcut icon" type="image/png" href="images/genius_icon.png"/>
+
+    <!-- Always include the game stylesheet, the Game class, the GameObject class and index.js -->
+    <!-- These four must be included in all games. This code never changes.                -->
+    <link href="css/game.css" rel="stylesheet" type="text/css"/>
+    <script src="js/CanvasGame.js" type="text/javascript"></script>
+    <script src="js/GameObject.js" type="text/javascript"></script>
+    <script src="js/index.js" type="text/javascript"></script>
+
+    <!-- ***************************************************************************** -->
+    <!-- *************** THE CODE BELOW CAN BE DIFFERENT FOR EACH GAME *************** -->
+    <script src="js/criminal_game.js" type="text/javascript"></script>
+
+    <!-- Include any classes that extend from GameObject that are used in this game -->
+    <script src="js/CriminalCanvasGame.js" type="text/javascript"></script>
+
+    <script src="js/ScrollingBackgroundImage.js" type="text/javascript"></script>
+
+
+    <!-- ************************* END OF GAME SPECIFIC CODE ************************* -->
+    <!-- ***************************************************************************** -->
+</head>
+
+<body>
+<div id="gameContainer"> <!-- having a container will allow us to have a game that includes elements that are outside of the canvas -->
+    <canvas id="gameCanvas" tabindex="1"></canvas>
+
+    <!-- ***************************************************************************** -->
+    <!-- *************** THE CODE BELOW CAN BE DIFFERENT FOR EACH GAME *************** -->
+    <p>Game</p>
+    <!-- ************************* END OF GAME SPECIFIC CODE ************************* -->
+    <!-- ***************************************************************************** -->
+
+</div>
+</body>
+</html>
