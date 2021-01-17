@@ -5,11 +5,14 @@
 let backgroundImage = new Image();
 backgroundImage.src = "img/egypt.jpg";
 
-let enemy = new Image();
-enemy.src = "images/skeleton.png";
+let enemyImage = new Image();
+enemyImage.src = "img/logo.png";
+
+let playerImage = new Image();
+playerImage = "img/logo.png"
 
 let fireballImage = new Image();
-fireballImage.src = "images/fireball.png";
+fireballImage.src = "img/fireball.png";
 
 const BACKGROUND = 0;
 const WIN_LOSE_MESSAGE = 1;
@@ -47,8 +50,8 @@ function playGame()
     /* This is game specific code. It will be different for each game, as each game will have it own gameObjects */
 
     gameObjects[BACKGROUND] = new ScrollingBackgroundImage(backgroundImage, 25);
-  //  player = new Bat(0, canvas.height - 10, 125);
-  // target = new Target(logImage, 100, 0, 100);
+  //  player = new Player( playerImage, 0, canvas.height - 10, 125);
+    player = new Player(enemyImage, canvas.width/2, canvas.height - 60, 50);
     /* END OF game specific code. */
 
 
@@ -60,7 +63,7 @@ function playGame()
 
 
     /* If they are needed, then include any game-specific mouse and keyboard listners */
- /*    document.addEventListener("keydown", function (e)
+    document.addEventListener("keydown", function (e)
     {
         var stepSize = 10;
 
@@ -79,5 +82,5 @@ function playGame()
             numberOfBulletsFired++;
             bat.setWidth(bat.getWidth() + 10);
         }
-    });*/
+    });
 }
