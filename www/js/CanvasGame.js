@@ -57,7 +57,6 @@ class CanvasGame
             }
         }
     }
-    
     collisionDetection()
     {
         /* If you need to implement collision detection in your game, then you can overwrite this method in your sub-class. */

@@ -1,15 +1,12 @@
-/* Author: Derek O Reilly, Dundalk Institute of Technology, Ireland. */
 
 class ScrollingBackgroundImage extends GameObject
 {
-    /* Each gameObject MUST have a constructor() and a render() method.        */
-    /* If the object animates, then it must also have an updateState() method. */
 
     constructor(image, updateStateMilliseconds)
     {
         super(updateStateMilliseconds); /* as this class extends from GameObject, you must always call super() */
 
-        /* These variables depend on the object */
+
         this.image = image;
 
         this.y = 0;

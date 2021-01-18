@@ -15,19 +15,23 @@ let fireballImage = new Image();
 fireballImage.src = "img/fireball.png";
 
 const BACKGROUND = 0;
-const WIN_LOSE_MESSAGE = 1;
 const UP = 0;
 const LEFT = 1;
 const DOWN = 2;
 const RIGHT = 3;
 const STOPPED = 4;
-
+const WIN_LOSE_MESSAGE = 5;
+const POINTS_INFO = 6;
+const BULLET_INFO = 7;
 /* Instead of using gameObject[], we can declare our own gameObject variables */
 const player = 1; // we cannot initialise gameObjects yet, as they might require images that have not yet loaded
 let target = null;
+let points = 0;  //no points to start
 
 let fireballs = [];
 let numberOfBulletsFired = 0; // no bullets fired yet
+let numberOfActiveBullets = 0;
+let availableBullets = 10 ;
 /******************* END OF Declare game specific data and functions *****************/
 
 
@@ -55,20 +59,17 @@ function playGame()
     /* This is game specific code. It will be different for each game, as each game will have it own gameObjects */
 
     gameObjects[BACKGROUND] = new ScrollingBackgroundImage(backgroundImage, 25);
-
-   // player = new Player(playerImage, canvas.width/2, canvas.height - 60, 50);
     gameObjects[player] = new Player(playerImage, canvas.width/2, canvas.height - 75);
-    /* END OF game specific code. */
 
 
-    /* Always create a game that uses the gameObject array */
+    gameObjects[POINTS_INFO] = new ScorePoints(points, 800);
+   // gameObjects[POINTS_INFO] = new StaticText("Points: "+points, 10, 20, "Times Roman", 24, "white");
+    gameObjects[BULLET_INFO] = new StaticText(availableBullets, 10, 40, "Times Roman", 24, "white");
+
     let game = new CriminalCanvasGame();
 
-    /* Always play the game */
     game.start();
 
-
-    /* If they are needed, then include any game-specific mouse and keyboard listners */
     document.addEventListener("keydown", function (e)
     {
         if (e.keyCode === 37)  // left
@@ -89,11 +90,42 @@ function playGame()
         } */
        else if (e.keyCode === 32) // space bar
         {
-            fireballs[numberOfBulletsFired] = new Fireball(fireballImage, bat.getCentreX());
-            fireballs[numberOfBulletsFired].start();
-            numberOfBulletsFired++;
-            bat.setWidth(bat.getWidth() + 10);
+            //checkBullets();
+            if (availableBullets >= 1)
+            {
+                availableBullets--;
+                fireballs[numberOfBulletsFired] = new Fireball(fireballImage, gameObjects[player].getCentreX());
+                fireballs[numberOfBulletsFired].start();
+                numberOfBulletsFired++;
+                showBullets();
+            }
+            // DOROBIĆ OBSŁUGĘ AMUNICJI
+           /* if (availableBullets < 3 ){
+                while (availableBullets < 7) {
+                //setInterval( function() { availableBullets++;}, 4000);
+                sleep(1000).then(() => {
+                    availableBullets++;
+                });
+                }
+            } */
         }
     });
-
 }
+function showBullets() {
+    ctx.fillStyle = "white";
+    ctx.font = "24px Times Roman";
+    ctx.fillText("Bullets: "+availableBullets, 10, 20);
+}
+/*
+function checkBullets() {
+   let bulletStatus;
+    for (let i = 0; i < fireballs.length; i++)
+    {
+       bulletStatus = fireballs[i].getStatus();
+        if(bulletStatus === true) {
+                numberOfActiveBullets++;
+        } else if(bulletStatus == false) {
+             numberOfActiveBullets--;
+        }
+    }
+} */

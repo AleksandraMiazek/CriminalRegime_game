@@ -12,16 +12,16 @@ class CriminalCanvasGame extends CanvasGame
         super();
     }
 
-
     render()
     {
         super.render();
 
        // player.render();
        //target.render();
-       /* for (let i = 0; i < fireballs.length; i++)
+        for (let i = 0; i < fireballs.length; i++)
         {
             fireballs[i].render();
-        } */
+        }
+
     }
 }

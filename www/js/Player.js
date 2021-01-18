@@ -1,13 +1,10 @@
-/* Author: Derek O Reilly, Dundalk Institute of Technology, Ireland. */
 
 class Player extends GameObject
 {
-    /* Each gameObject MUST have a constructor() and a render() method.        */
-    /* If the object animates, then it must also have an updateState() method. */
 
     constructor(playerImage, centreX, centreY)
     {
-        super(40); /* as this class extends from GameObject, you must always call super() */
+        super(40);
         this.centreX = centreX;
         this.centreY = centreY;
         this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE = 9; // the number of rows and columns in the gameObject
@@ -19,7 +16,7 @@ class Player extends GameObject
 
         this.SPRITE_WIDTH = (this.playerImage.width / this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE);
         this.SPRITE_HEIGHT = (this.playerImage.height / this.NUMBER_OF_ROWS_IN_SPRITE_IMAGE);
-        this.WIDTH_OF_PLAYER_ON_CANVAS = 90; /* the width and height that the skeleton will take up on the canvas */
+        this.WIDTH_OF_PLAYER_ON_CANVAS = 90; /* the width and height that will take up on the canvas */
         this.HEIGHT_OF_PLAYER_ON_CANVAS = 90;
 
         this.PLAYER_SPEED = 2;
