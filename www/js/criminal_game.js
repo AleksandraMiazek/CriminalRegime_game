@@ -9,16 +9,21 @@ let enemyImage = new Image();
 enemyImage.src = "img/logo.png";
 
 let playerImage = new Image();
-playerImage = "img/logo.png"
+playerImage.src = "img/darkplayer.png";
 
 let fireballImage = new Image();
 fireballImage.src = "img/fireball.png";
 
 const BACKGROUND = 0;
 const WIN_LOSE_MESSAGE = 1;
+const UP = 0;
+const LEFT = 1;
+const DOWN = 2;
+const RIGHT = 3;
+const STOPPED = 4;
 
 /* Instead of using gameObject[], we can declare our own gameObject variables */
-let player = null; // we cannot initialise gameObjects yet, as they might require images that have not yet loaded
+const player = 1; // we cannot initialise gameObjects yet, as they might require images that have not yet loaded
 let target = null;
 
 let fireballs = [];
@@ -50,8 +55,9 @@ function playGame()
     /* This is game specific code. It will be different for each game, as each game will have it own gameObjects */
 
     gameObjects[BACKGROUND] = new ScrollingBackgroundImage(backgroundImage, 25);
-  //  player = new Player( playerImage, 0, canvas.height - 10, 125);
-    player = new Player(enemyImage, canvas.width/2, canvas.height - 60, 50);
+
+   // player = new Player(playerImage, canvas.width/2, canvas.height - 60, 50);
+    gameObjects[player] = new Player(playerImage, canvas.width/2, canvas.height - 80);
     /* END OF game specific code. */
 
 
@@ -65,16 +71,22 @@ function playGame()
     /* If they are needed, then include any game-specific mouse and keyboard listners */
     document.addEventListener("keydown", function (e)
     {
-        var stepSize = 10;
-
         if (e.keyCode === 37)  // left
         {
-            player.changeX(-stepSize);
+           gameObjects[player].setDirection(LEFT);
+        }
+        else if (e.keyCode === 38) // up
+        {
+          gameObjects[player].setDirection(UP);
         }
         else if (e.keyCode === 39) // right
         {
-            player.changeX(stepSize);
+          gameObjects[player].setDirection(RIGHT);
         }
+       /* else if (e.keyCode === 40) // down
+        {
+         gameObjects[player].setDirection(DOWN);
+        } */
        else if (e.keyCode === 32) // space bar
         {
             fireballs[numberOfBulletsFired] = new Fireball(fireballImage, bat.getCentreX());
@@ -83,4 +95,5 @@ function playGame()
             bat.setWidth(bat.getWidth() + 10);
         }
     });
+
 }

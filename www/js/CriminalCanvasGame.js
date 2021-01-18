@@ -17,7 +17,7 @@ class CriminalCanvasGame extends CanvasGame
     {
         super.render();
 
-        player.render();
+       // player.render();
        //target.render();
        /* for (let i = 0; i < fireballs.length; i++)
         {
