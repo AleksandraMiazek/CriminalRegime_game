@@ -29,14 +29,11 @@ let target = null;
 let points = 0;  //no points to start
 
 let fireballs = [];
+let enemies = [];
+let numberOfEnemies = 0;
 let numberOfBulletsFired = 0; // no bullets fired yet
-let numberOfActiveBullets = 0;
-let availableBullets = 10 ;
+let availableBullets = 5 ;  // available bullets at the beginning of the game
 /******************* END OF Declare game specific data and functions *****************/
-
-
-
-
 
 
 
@@ -61,10 +58,8 @@ function playGame()
     gameObjects[BACKGROUND] = new ScrollingBackgroundImage(backgroundImage, 25);
     gameObjects[player] = new Player(playerImage, canvas.width/2, canvas.height - 75);
 
-
     gameObjects[POINTS_INFO] = new ScorePoints(points, 800);
-   // gameObjects[POINTS_INFO] = new StaticText("Points: "+points, 10, 20, "Times Roman", 24, "white");
-    gameObjects[BULLET_INFO] = new StaticText(availableBullets, 10, 40, "Times Roman", 24, "white");
+    gameObjects[BULLET_INFO] = new BulletsControl(availableBullets, 2000);
 
     let game = new CriminalCanvasGame();
 
@@ -91,41 +86,13 @@ function playGame()
        else if (e.keyCode === 32) // space bar
         {
             //checkBullets();
-            if (availableBullets >= 1)
+            if ( gameObjects[BULLET_INFO].getAvailableBullets() >= 1)
             {
-                availableBullets--;
                 fireballs[numberOfBulletsFired] = new Fireball(fireballImage, gameObjects[player].getCentreX());
                 fireballs[numberOfBulletsFired].start();
+                gameObjects[BULLET_INFO].bulletFired();
                 numberOfBulletsFired++;
-                showBullets();
             }
-            // DOROBIĆ OBSŁUGĘ AMUNICJI
-           /* if (availableBullets < 3 ){
-                while (availableBullets < 7) {
-                //setInterval( function() { availableBullets++;}, 4000);
-                sleep(1000).then(() => {
-                    availableBullets++;
-                });
-                }
-            } */
         }
     });
 }
-function showBullets() {
-    ctx.fillStyle = "white";
-    ctx.font = "24px Times Roman";
-    ctx.fillText("Bullets: "+availableBullets, 10, 20);
-}
-/*
-function checkBullets() {
-   let bulletStatus;
-    for (let i = 0; i < fireballs.length; i++)
-    {
-       bulletStatus = fireballs[i].getStatus();
-        if(bulletStatus === true) {
-                numberOfActiveBullets++;
-        } else if(bulletStatus == false) {
-             numberOfActiveBullets--;
-        }
-    }
-} */
