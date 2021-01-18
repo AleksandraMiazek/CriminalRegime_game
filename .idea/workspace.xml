@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23666364-4419-42e2-89b3-9e2c238a1d8f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/www/js/EnemiesControler.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/js/Enemy.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/BulletsControl.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/BulletsControl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/BulletsControl.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/BulletsControler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/Player.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/Player.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/js/criminal_game.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/criminal_game.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

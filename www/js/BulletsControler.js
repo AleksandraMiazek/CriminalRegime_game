@@ -1,5 +1,5 @@
 
-class BulletsControl extends GameObject
+class BulletsControler extends GameObject
 {
     constructor(value, updateStateMilliseconds)
     {

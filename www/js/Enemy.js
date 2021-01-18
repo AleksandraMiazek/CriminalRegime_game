@@ -1,8 +1,7 @@
 
-class Player extends GameObject
+class Enemy extends GameObject
 {
-
-    constructor(playerImage, centreX, centreY)
+    constructor(enemyImage, centreX, centreY)
     {
         super(40);
         this.centreX = centreX;
@@ -12,47 +11,25 @@ class Player extends GameObject
 
         this.column = 0;
         this.animationStartDelay = 0;
-        this.playerImage = playerImage;
+        this.enemyImage = enemyImage;
 
-        this.SPRITE_WIDTH = (this.playerImage.width / this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE);
-        this.SPRITE_HEIGHT = (this.playerImage.height / this.NUMBER_OF_ROWS_IN_SPRITE_IMAGE);
-        this.WIDTH_OF_PLAYER_ON_CANVAS = 90; /* the width and height that will take up on the canvas */
-        this.HEIGHT_OF_PLAYER_ON_CANVAS = 90;
+        this.SPRITE_WIDTH = (this.enemyImage.width / this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE);
+        this.SPRITE_HEIGHT = (this.enemyImage.height / this.NUMBER_OF_ROWS_IN_SPRITE_IMAGE);
+        this.WIDTH_OF_ENEMY_ON_CANVAS = 85; /* the width and height that will take up on the canvas */
+        this.HEIGHT_OF_ENEMY_ON_CANVAS = 85;
 
-        this.PLAYER_SPEED = 2;
-        this.setDirection(STOPPED);
+        this.ENEMY_SPEED = 2;
+        this.setDirection(DOWN);
 
     }
     updateState()
     {
-        if (this.direction === UP)
-        {
-           // this.centreY -= this.PLAYER_SPEED;
-        }
-        else if (this.direction === LEFT)
-        {
-          if(this.centreX <= 10 ) {
-            this.setDirection(UP);
-          } else {
-            this.centreX -= this.PLAYER_SPEED;
-          }
-        }
-        /*else if (this.direction === DOWN)
+        if (this.direction === DOWN)
         {
            this.centreY += this.PLAYER_SPEED;
-        }*/
-        else if (this.direction === RIGHT)
-        {
-          if(this.centreX >= canvas.width -  (this.WIDTH_OF_PLAYER_ON_CANVAS/2) ) {
-              this.setDirection(UP);
-          } else {
-             this.centreX += this.PLAYER_SPEED;
-          }
         }
-
         if (this.direction !== STOPPED)
         {
-
             this.column++;
             this.currentgameObject++;
 
@@ -77,8 +54,7 @@ class Player extends GameObject
     }
     render()
     {
-        //ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-         ctx.drawImage(this.playerImage, this.column * this.SPRITE_WIDTH, this.row * this.SPRITE_WIDTH, this.SPRITE_WIDTH, this.SPRITE_HEIGHT, this.centreX - (this.SPRITE_WIDTH / 2), this.centreY - (this.SPRITE_HEIGHT / 2), this.WIDTH_OF_PLAYER_ON_CANVAS, this.HEIGHT_OF_PLAYER_ON_CANVAS);
+         ctx.drawImage(this.enemyImage, this.column * this.SPRITE_WIDTH, this.row * this.SPRITE_WIDTH, this.SPRITE_WIDTH, this.SPRITE_HEIGHT, this.centreX - (this.SPRITE_WIDTH / 2), this.centreY - (this.SPRITE_HEIGHT / 2), this.WIDTH_OF_ENEMY_ON_CANVAS, this.HEIGHT_OF_ENEMY_ON_CANVAS);
 
     }
     setDirection(newDirection)

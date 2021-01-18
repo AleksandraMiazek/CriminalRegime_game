@@ -23,6 +23,8 @@ const STOPPED = 4;
 const WIN_LOSE_MESSAGE = 5;
 const POINTS_INFO = 6;
 const BULLET_INFO = 7;
+const ENEMIES = 8;
+const ENEMY = 9;
 /* Instead of using gameObject[], we can declare our own gameObject variables */
 const player = 1; // we cannot initialise gameObjects yet, as they might require images that have not yet loaded
 let target = null;
@@ -30,7 +32,7 @@ let points = 0;  //no points to start
 
 let fireballs = [];
 let enemies = [];
-let numberOfEnemies = 0;
+let numberOfEnemies = 2;
 let numberOfBulletsFired = 0; // no bullets fired yet
 let availableBullets = 5 ;  // available bullets at the beginning of the game
 /******************* END OF Declare game specific data and functions *****************/
@@ -59,7 +61,12 @@ function playGame()
     gameObjects[player] = new Player(playerImage, canvas.width/2, canvas.height - 75);
 
     gameObjects[POINTS_INFO] = new ScorePoints(points, 800);
-    gameObjects[BULLET_INFO] = new BulletsControl(availableBullets, 2000);
+    gameObjects[BULLET_INFO] = new BulletsControler(availableBullets, 3300);
+   // gameObjects[ENEMIES] = new EnemiesControler(enemyImage, numberOfEnemies, 2000);
+   // enemies[numberOfEnemies] = new Enemy(enemyImage, Math.random() * (canvas.width - 85), 10);
+    //enemies[numberOfEnemies].start();
+
+    gameObjects[ENEMY] = new Enemy(enemyImage, 60, 10);
 
     let game = new CriminalCanvasGame();
 
