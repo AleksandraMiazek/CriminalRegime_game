@@ -57,7 +57,7 @@ function playGame()
     gameObjects[BACKGROUND] = new ScrollingBackgroundImage(backgroundImage, 25);
 
    // player = new Player(playerImage, canvas.width/2, canvas.height - 60, 50);
-    gameObjects[player] = new Player(playerImage, canvas.width/2, canvas.height - 80);
+    gameObjects[player] = new Player(playerImage, canvas.width/2, canvas.height - 75);
     /* END OF game specific code. */
 
 

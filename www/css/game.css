@@ -10,8 +10,8 @@
 {
     /* the canvas styling usually does not change */
     outline:1px solid darkgrey;
-    width:400px;
-    height:720px;
+    width:345px;
+    height:600px;
 }
 
 #loadingMessage

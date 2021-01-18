@@ -19,8 +19,8 @@ class Player extends GameObject
 
         this.SPRITE_WIDTH = (this.playerImage.width / this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE);
         this.SPRITE_HEIGHT = (this.playerImage.height / this.NUMBER_OF_ROWS_IN_SPRITE_IMAGE);
-        this.WIDTH_OF_PLAYER_ON_CANVAS = 100; /* the width and height that the skeleton will take up on the canvas */
-        this.HEIGHT_OF_PLAYER_ON_CANVAS = 100;
+        this.WIDTH_OF_PLAYER_ON_CANVAS = 90; /* the width and height that the skeleton will take up on the canvas */
+        this.HEIGHT_OF_PLAYER_ON_CANVAS = 90;
 
         this.PLAYER_SPEED = 2;
         this.setDirection(STOPPED);
@@ -34,7 +34,11 @@ class Player extends GameObject
         }
         else if (this.direction === LEFT)
         {
+          if(this.centreX <= 10 ) {
+            this.setDirection(UP);
+          } else {
             this.centreX -= this.PLAYER_SPEED;
+          }
         }
         /*else if (this.direction === DOWN)
         {
@@ -42,7 +46,11 @@ class Player extends GameObject
         }*/
         else if (this.direction === RIGHT)
         {
-            this.centreX += this.PLAYER_SPEED;
+          if(this.centreX >= canvas.width -  (this.WIDTH_OF_PLAYER_ON_CANVAS/2) ) {
+              this.setDirection(UP);
+          } else {
+             this.centreX += this.PLAYER_SPEED;
+          }
         }
 
         if (this.direction !== STOPPED)
