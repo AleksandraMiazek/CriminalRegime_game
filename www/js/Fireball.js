@@ -6,11 +6,11 @@ class Fireball extends GameObject
         super(5);
 
         this.image = image;
-        this.width = 20;
-        this.height = 20;
+        this.width = 22;
+        this.height = 22;
         this.centreX = centreX;
-        this.centreY = canvas.height - this.height - 1;
-        this.stepSize = -1;
+        this.centreY = canvas.height - this.height - 15;
+      //  this.stepSize = -1;
         this.rotation = 360;
         this.active = true;
     }
@@ -22,25 +22,13 @@ class Fireball extends GameObject
         {
             this.rotation = 360;
         }
-
-        if (this.stepSize < 0)
+        this.centreY--;
+        if (this.centreY < 0 && this.active === true)
         {
-            this.centreY--;
-            if (this.centreY < 0)
-            {
-              //  this.stepSize = 1;
-             this.active = false;
-
-            }
+         this.active = false;
+          numberOfActiveBullets--;   //the ball after touching the edge of the canvas becomes inactive
+         // alert(" numberOfActiveBullets: " +  numberOfActiveBullets);
         }
-      /*  else // this.stepSize >= 0
-        {
-            this.centreY++;
-            if (this.centreY > canvas.height)
-            {
-                this.stepSize = -1;
-            }
-        } */
     }
 
     render()
@@ -65,5 +53,8 @@ class Fireball extends GameObject
     getCentreY()
     {
         return this.centreY;
+    }
+    setY(value) {
+         this.centreY = value;
     }
 }

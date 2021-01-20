@@ -1,83 +1,65 @@
 
-class Enemy extends GameObject
+class Skeleton extends GameObject
 {
-    constructor(enemyImage, centreX, centreY)
+   constructor(image,x, y, width, height, updateStateMilliseconds, delay = 0)
     {
-        super(40);
-        this.centreX = centreX;
-        this.centreY = centreY;
-        this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE = 9; // the number of rows and columns in the gameObject
-        this.NUMBER_OF_ROWS_IN_SPRITE_IMAGE = 4; // the number of rows and columns in the gameObject
+        super(updateStateMilliseconds, delay); /* as this class extends from GameObject, you must always call super() */
 
-        this.column = 0;
-        this.animationStartDelay = 0;
-        this.enemyImage = enemyImage;
+        this.skeletonImage = image;
+        this.width = width;
+        this.height = height;
+        this.x = x;
+        this.y = y;
 
-        this.SPRITE_WIDTH = (this.enemyImage.width / this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE);
-        this.SPRITE_HEIGHT = (this.enemyImage.height / this.NUMBER_OF_ROWS_IN_SPRITE_IMAGE);
-        this.WIDTH_OF_ENEMY_ON_CANVAS = 85; /* the width and height that will take up on the canvas */
-        this.HEIGHT_OF_ENEMY_ON_CANVAS = 85;
+        this.NUMBER_OF_SPRITES = 9; // the number of gameObjects in the gameObject image
+        this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE = 9; // the number of columns in the gameObject image
+        this.NUMBER_OF_ROWS_IN_SPRITE_IMAGE = 1; // the number of rows in the gameObject image
+        this.currentgameObject = 0;
 
-        this.ENEMY_SPEED = 2;
-        this.setDirection(DOWN);
-
+        this.START_ROW = 0;
+        this.START_COLUMN = 0;
+        this.row = this.START_ROW;
+        this.column = this.START_COLUMN;
+        this.speed = 1;
     }
+
     updateState()
     {
-        if (this.direction === DOWN)
+        this.y+=this.speed;
+        if (this.y > canvas.height)
         {
-           this.centreY += this.PLAYER_SPEED;
+            this.y = -this.height;
+            this.x = Math.random() * (canvas.width - 60);
         }
-        if (this.direction !== STOPPED)
+        // speed control -------------------------------------------
+        if(gameObjects[POINTS_INFO].GetPoints() === 200) {
+            this.speed=2;
+        } else if(gameObjects[POINTS_INFO].GetPoints() === 500) {
+            this.speed=3;
+        } else if(gameObjects[POINTS_INFO].GetPoints() === 1000) {
+            this.speed=4;
+        } else if(gameObjects[POINTS_INFO].GetPoints() === 3000) {
+            this.speed=5;
+        }//--------------------------------------------------------
+
+        this.currentgameObject++;
+        if (this.currentgameObject === this.NUMBER_OF_SPRITES)
+        {
+            this.column = this.START_COLUMN;
+            this.row = this.START_ROW;
+            this.currentgameObject = 0;
+        }
+        else
         {
             this.column++;
-            this.currentgameObject++;
-
-            if (this.currentgameObject >= this.endgameObject)
-            {
-                this.row = this.direction;
-                this.column = 0;
-                this.currentgameObject = this.startgameObject;
-            }
-            else if (this.column >= this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE)
+            if (this.column === this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE)
             {
                 this.column = 0;
                 this.row++;
             }
         }
-        else // stopped
-        {
-            this.column = 0;
-            this.row = 2;
-            this.currentgameObject = 0;
-        }
     }
-    render()
-    {
-         ctx.drawImage(this.enemyImage, this.column * this.SPRITE_WIDTH, this.row * this.SPRITE_WIDTH, this.SPRITE_WIDTH, this.SPRITE_HEIGHT, this.centreX - (this.SPRITE_WIDTH / 2), this.centreY - (this.SPRITE_HEIGHT / 2), this.WIDTH_OF_ENEMY_ON_CANVAS, this.HEIGHT_OF_ENEMY_ON_CANVAS);
 
-    }
-    setDirection(newDirection)
-    {
-        this.direction = newDirection;
-        this.startgameObject = this.direction * this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE;
-        this.endgameObject = this.startgameObject + this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE;
-        this.currentgameObject = this.startgameObject;
-        this.row = this.direction;
-        this.column = 0;
-    }
-    getDirection()
-    {
-        return(this.direction);
-    }
-    getCentreX()
-    {
-        return this.centreX;
-    }
-    getCentreY()
-    {
-        return this.centreY;
-    }
     pointIsInsideBoundingRectangle(pointX, pointY)
     {
         if ((pointX > this.x) && (pointY > this.y))
@@ -103,5 +85,23 @@ class Enemy extends GameObject
             return false;
         }
         return true; // inside this gameObject
+    }
+    render()
+    {
+        let SPRITE_WIDTH = ((this.skeletonImage.width - 5) / this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE); // the -5 is an adjustment so that this gameObject works
+        let SPRITE_HEIGHT = (this.skeletonImage.height / this.NUMBER_OF_ROWS_IN_SPRITE_IMAGE);
+        ctx.drawImage(this.skeletonImage, this.column * SPRITE_WIDTH, this.row * SPRITE_WIDTH, SPRITE_WIDTH, SPRITE_HEIGHT, this.x, this.y, this.width, this.height);
+    }
+    setX(value) {
+        this.x = value;
+    }
+    setY(value) {
+        this.y = value;
+    }
+    getX() {
+        return this.x;
+    }
+    getY() {
+        return this.y;
     }
 }

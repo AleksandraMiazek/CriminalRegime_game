@@ -5,14 +5,17 @@
 let backgroundImage = new Image();
 backgroundImage.src = "img/egypt.jpg";
 
-let enemyImage = new Image();
-enemyImage.src = "img/logo.png";
+let skeletonImage = new Image();
+skeletonImage.src = "img/skeleton_down.png";
+
+let mumiaImage = new Image();
+mumiaImage.src = "img/mumia.png";
 
 let playerImage = new Image();
 playerImage.src = "img/darkplayer.png";
 
 let fireballImage = new Image();
-fireballImage.src = "img/fireball.png";
+fireballImage.src = "img/ninja_bullet.png";
 
 const BACKGROUND = 0;
 const UP = 0;
@@ -23,17 +26,19 @@ const STOPPED = 4;
 const WIN_LOSE_MESSAGE = 5;
 const POINTS_INFO = 6;
 const BULLET_INFO = 7;
-const ENEMIES = 8;
-const ENEMY = 9;
+const MUMIA = 8;
 /* Instead of using gameObject[], we can declare our own gameObject variables */
-const player = 1; // we cannot initialise gameObjects yet, as they might require images that have not yet loaded
+const player = 9; // we cannot initialise gameObjects yet, as they might require images that have not yet loaded
 let target = null;
 let points = 0;  //no points to start
 
 let fireballs = [];
-let enemies = [];
-let numberOfEnemies = 2;
+let mumies = [];
+let skeletons = [];
+let numberOfSkeletons = 0;
+let numberOfMumies = 0;
 let numberOfBulletsFired = 0; // no bullets fired yet
+let numberOfActiveBullets = 0;
 let availableBullets = 5 ;  // available bullets at the beginning of the game
 /******************* END OF Declare game specific data and functions *****************/
 
@@ -66,7 +71,23 @@ function playGame()
    // enemies[numberOfEnemies] = new Enemy(enemyImage, Math.random() * (canvas.width - 85), 10);
     //enemies[numberOfEnemies].start();
 
-    gameObjects[ENEMY] = new Enemy(enemyImage, 60, 10);
+   // gameObjects[ENEMY] = new Enemy(enemyImage, canvas.width/2, canvas.height/2);
+
+    //gameObjects[ENEMY] = new Enemy2(mumiaImage, 20, 0, 85, 85, 50, 0 );
+    let mumia_delay = 200;
+    let skeleton_delay = 3000;
+    for(let i = 0; i<3; i++) {
+        mumies[numberOfMumies] = new Mumia(mumiaImage,  Math.random() * (canvas.width - 60), 0, 85, 85, 50, mumia_delay );
+        mumies[numberOfMumies].start();
+        numberOfMumies++;
+        mumia_delay+=4500;
+    }
+    for(let i = 0; i<4; i++) {
+        skeletons[numberOfSkeletons] = new Skeleton(skeletonImage,  Math.random() * (canvas.width - 60), 0, 85, 85, 50, skeleton_delay );
+        skeletons[numberOfSkeletons].start();
+        numberOfSkeletons++;
+        skeleton_delay+=5500;
+    }
 
     let game = new CriminalCanvasGame();
 
@@ -99,6 +120,7 @@ function playGame()
                 fireballs[numberOfBulletsFired].start();
                 gameObjects[BULLET_INFO].bulletFired();
                 numberOfBulletsFired++;
+                numberOfActiveBullets++;
             }
         }
     });

@@ -25,6 +25,9 @@ class Player extends GameObject
     }
     updateState()
     {
+       if(gameObjects[POINTS_INFO].GetPoints() === 30) {
+                this.PLAYER_SPEED = 3;
+        }
         if (this.direction === UP)
         {
            // this.centreY -= this.PLAYER_SPEED;
@@ -104,19 +107,19 @@ class Player extends GameObject
     }
     pointIsInsideBoundingRectangle(pointX, pointY)
     {
-        if ((pointX > this.x) && (pointY > this.y))
+        if ((pointX > this.centreX) && (pointY > this.centreX))
         {
-            if (pointX > this.x)
+            if (pointX > this.centreX)
             {
-                if ((pointX - this.x) > this.width)
+                if ((pointX - this.centreX) > this.WIDTH_OF_PLAYER_ON_CANVAS)
                 {
                     return false; // to the right of this gameObject
                 }
             }
 
-            if (pointY > this.y)
+            if (pointY > this.centreY)
             {
-                if ((pointY - this.y) > this.height)
+                if ((pointY - this.centreY) > this.HEIGHT_OF_PLAYER_ON_CANVAS)
                 {
                     return false; // below this gameObject
                 }

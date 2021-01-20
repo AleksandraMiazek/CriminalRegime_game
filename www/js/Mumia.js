@@ -1,24 +1,20 @@
-/* Author: Derek O Reilly, Dundalk Institute of Technology, Ireland. */
 
-class Enemy2 extends GameObject
+class Mumia extends GameObject
 {
-    /* Each gameObject MUST have a constructor() and a render() method.        */
-    /* If the object animates, then it must also have an updateState() method. */
-
     constructor(image,x, y, width, height, updateStateMilliseconds, delay = 0)
     {
-        super(updateStateMilliseconds, delay); /* as this class extends from GameObject, you must always call super() */
+        super(updateStateMilliseconds, delay);
 
-        /* These variables depend on the object */
-        this.birdImage = image;
+
+        this.mumiaImage = image;
         this.width = width;
         this.height = height;
         this.x = x;
         this.y = y;
 
-        this.NUMBER_OF_SPRITES = 9; // the number of gameObjects in the gameObject image
-        this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE = 9; // the number of columns in the gameObject image
-        this.NUMBER_OF_ROWS_IN_SPRITE_IMAGE = 1; // the number of rows in the gameObject image
+        this.NUMBER_OF_SPRITES = 11; // the number of gameObjects in the gameObject image
+        this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE = 5; // the number of columns in the gameObject image
+        this.NUMBER_OF_ROWS_IN_SPRITE_IMAGE = 3; // the number of rows in the gameObject image
         this.currentgameObject = 0;
 
         this.START_ROW = 0;
@@ -64,11 +60,53 @@ class Enemy2 extends GameObject
             }
         }
     }
+    setX(value) {
+        this.x = value;
+    }
+    setY(value) {
+        this.y = value;
+    }
+    getX() {
+        return this.x;
+    }
+    getY() {
+        return this.y;
+    }
+    getHeight() {
+        return this.height;
+    }
+     pointIsInsideBoundingRectangle(pointX, pointY)
+    {
+    pointX+=25;
+    pointY+=25;
+        if ((pointX > this.x) && (pointY > this.y))
+        {
+            if (pointX > this.x)
+            {
+                if ((pointX - this.x) > this.width)
+                {
+                    return false; // to the right of this gameObject
+                }
+            }
 
+            if (pointY > this.y)
+            {
+                if ((pointY - this.y) > this.height)
+                {
+                    return false; // below this gameObject
+                }
+            }
+        }
+        else // above or to the left of this gameObject
+        {
+            return false;
+        }
+        return true; // inside this gameObject
+    }
     render()
     {
-        let SPRITE_WIDTH = ((this.birdImage.width - 5) / this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE); // the -5 is an adjustment so that this gameObject works
-        let SPRITE_HEIGHT = (this.birdImage.height / this.NUMBER_OF_ROWS_IN_SPRITE_IMAGE);
-        ctx.drawImage(this.birdImage, this.column * SPRITE_WIDTH, this.row * SPRITE_WIDTH, SPRITE_WIDTH, SPRITE_HEIGHT, this.x, this.y, this.width, this.height);
+        let SPRITE_WIDTH = ((this.mumiaImage.width - 5) / this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE); // the -5 is an adjustment so that this gameObject works
+        let SPRITE_HEIGHT = (this.mumiaImage.height / this.NUMBER_OF_ROWS_IN_SPRITE_IMAGE);
+        ctx.drawImage(this.mumiaImage, this.column * SPRITE_WIDTH, this.row * SPRITE_WIDTH, SPRITE_WIDTH, SPRITE_HEIGHT, this.x, this.y, this.width, this.height);
     }
 }
