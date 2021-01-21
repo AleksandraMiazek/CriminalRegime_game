@@ -15,8 +15,15 @@ class BulletsControler extends GameObject
     }
     updateState()
     {
-        if(this.bullets < 10) {
-            this.bullets++;
+        if(gameObjects[POINTS_INFO].GetPoints() > 2000) {
+            if(this.bullets < 15) {
+                this.bullets++;
+            }
+        }
+        else if(gameObjects[POINTS_INFO].GetPoints() < 2000) {
+            if(this.bullets < 10) {
+                this.bullets++;
+            }
         }
     }
     render()

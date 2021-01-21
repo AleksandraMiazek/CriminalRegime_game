@@ -21,6 +21,7 @@ class Skeleton extends GameObject
         this.row = this.START_ROW;
         this.column = this.START_COLUMN;
         this.speed = 1;
+        this.health = 2;
     }
 
     updateState()
@@ -103,5 +104,14 @@ class Skeleton extends GameObject
     }
     getY() {
         return this.y;
+    }
+    setHealth(value) {
+        this.health = value;
+    }
+    reduceHealth() {
+        this.health-=1;
+    }
+    getHealth() {
+        return this.health;
     }
 }

@@ -25,8 +25,11 @@ class Player extends GameObject
     }
     updateState()
     {
-       if(gameObjects[POINTS_INFO].GetPoints() === 30) {
-                this.PLAYER_SPEED = 3;
+       if(gameObjects[POINTS_INFO].GetPoints() === 500) {
+            this.PLAYER_SPEED = 3;
+        }
+        else if(gameObjects[POINTS_INFO].GetPoints() === 3000) {
+            this.PLAYER_SPEED = 4;
         }
         if (this.direction === UP)
         {

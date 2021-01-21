@@ -5,8 +5,20 @@
 let backgroundImage = new Image();
 backgroundImage.src = "img/egypt.jpg";
 
+let bulletSound = document.createElement('audio');
+bulletSound.src = 'audio/Arrow.mp3';
+
+let giggleSound = new Audio();
+giggleSound.src = 'audio/Giggle.mp3';
+
+let explosionSound = new Audio();
+explosionSound.src = 'audio/Cannon.mp3';
+
 let skeletonImage = new Image();
 skeletonImage.src = "img/skeleton_down.png";
+
+let explosionImage = new Image();
+explosionImage.src = "img/smoke.png";
 
 let mumiaImage = new Image();
 mumiaImage.src = "img/mumia.png";
@@ -27,8 +39,10 @@ const WIN_LOSE_MESSAGE = 5;
 const POINTS_INFO = 6;
 const BULLET_INFO = 7;
 const MUMIA = 8;
-/* Instead of using gameObject[], we can declare our own gameObject variables */
-const player = 9; // we cannot initialise gameObjects yet, as they might require images that have not yet loaded
+const EXPLOSION = 9;
+const player = 10;
+
+/* Instead of using gameObject[],  gameObject variables */
 let target = null;
 let points = 0;  //no points to start
 
@@ -66,14 +80,10 @@ function playGame()
     gameObjects[player] = new Player(playerImage, canvas.width/2, canvas.height - 75);
 
     gameObjects[POINTS_INFO] = new ScorePoints(points, 800);
-    gameObjects[BULLET_INFO] = new BulletsControler(availableBullets, 3300);
-   // gameObjects[ENEMIES] = new EnemiesControler(enemyImage, numberOfEnemies, 2000);
-   // enemies[numberOfEnemies] = new Enemy(enemyImage, Math.random() * (canvas.width - 85), 10);
-    //enemies[numberOfEnemies].start();
+    gameObjects[BULLET_INFO] = new BulletsControler(availableBullets, 1500);
+   // gameObjects[EXPLOSION] = new Explosion(explosionImage, explosionSound, 100, 100, 100, 100);
 
-   // gameObjects[ENEMY] = new Enemy(enemyImage, canvas.width/2, canvas.height/2);
 
-    //gameObjects[ENEMY] = new Enemy2(mumiaImage, 20, 0, 85, 85, 50, 0 );
     let mumia_delay = 200;
     let skeleton_delay = 3000;
     for(let i = 0; i<3; i++) {
@@ -111,17 +121,24 @@ function playGame()
         {
          gameObjects[player].setDirection(DOWN);
         } */
-       else if (e.keyCode === 32) // space bar
+       else if (e.keyCode === 32  ) // space bar
         {
-            //checkBullets();
-            if ( gameObjects[BULLET_INFO].getAvailableBullets() >= 1)
-            {
-                fireballs[numberOfBulletsFired] = new Fireball(fireballImage, gameObjects[player].getCentreX());
-                fireballs[numberOfBulletsFired].start();
-                gameObjects[BULLET_INFO].bulletFired();
-                numberOfBulletsFired++;
-                numberOfActiveBullets++;
-            }
+            fire();
         }
     });
+    document.addEventListener("click", function ()
+    {
+        fire();
+    });
+}
+
+function fire() {
+    if ( gameObjects[BULLET_INFO].getAvailableBullets() >= 1)
+    {
+        fireballs[numberOfBulletsFired] = new Fireball(fireballImage, bulletSound, gameObjects[player].getCentreX());
+        fireballs[numberOfBulletsFired].start();
+        gameObjects[BULLET_INFO].bulletFired();
+        numberOfBulletsFired++;
+        numberOfActiveBullets++;
+    }
 }
