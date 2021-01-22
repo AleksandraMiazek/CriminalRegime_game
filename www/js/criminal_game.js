@@ -54,6 +54,11 @@ let numberOfMumies = 0;
 let numberOfBulletsFired = 0; // no bullets fired yet
 let numberOfActiveBullets = 0;
 let availableBullets = 5 ;  // available bullets at the beginning of the game
+
+let acl = new Accelerometer({frequency: 20});
+let left_move = false;
+let right_move = false;
+let up_move = false;
 /******************* END OF Declare game specific data and functions *****************/
 
 
@@ -81,7 +86,6 @@ function playGame()
 
     gameObjects[POINTS_INFO] = new ScorePoints(points, 800);
     gameObjects[BULLET_INFO] = new BulletsControler(availableBullets, 1500);
-   // gameObjects[EXPLOSION] = new Explosion(explosionImage, explosionSound, 100, 100, 100, 100);
 
 
     let mumia_delay = 200;
@@ -129,7 +133,74 @@ function playGame()
     document.addEventListener("click", function ()
     {
         fire();
+        //navigator.vibrate(100);
     });
+
+    acl.addEventListener('reading', () => {
+        var move = 0;
+        var threshold = 0.5;
+
+        if (acl.x > threshold) {
+            move = 0; // left
+        }
+        else if (acl.x < -threshold) {
+            move = 1; // right
+        }
+        else {
+            move = 2; // up
+        }
+
+        if (move == 0 && left_move === false) {
+            left_move = true;
+            right_move = false;
+            gameObjects[player].setDirection(LEFT);
+        }
+        else if (move == 1 && right_move === false) {
+            left_move = false;
+            right_move = true;
+            gameObjects[player].setDirection(RIGHT);
+        }
+        else if (move == 2) {
+            if (left_move || right_move) {
+                gameObjects[player].setDirection(UP);
+            }
+
+            left_move = false;
+            right_move = false;
+        }
+    });
+
+ /*   acl.addEventListener('reading', () => {
+        if(acl.x > 1 && left_move === false ) {
+           left_move=true;
+           right_move = false;
+            gameObjects[player].setDirection(LEFT);
+          //  alert(acl.x);
+        }
+
+       else if(acl.x < -1 && right_move === false) {
+            right_move = true;
+            left_move = false;
+            gameObjects[player].setDirection(RIGHT);
+          //  alert(acl.x);
+        }
+        else if (acl.y > -0.1 && up_move === false) {
+            up_move = true;
+             gameObjects[player].setDirection(UP);
+             left_move = false;
+             right_move = false;
+        }
+      else  {
+        if(left_move || right_move ) {
+            gameObjects[player].setDirection(UP);
+       }
+            left_move = false;
+            right_move = false;
+        }
+    });  */
+
+    acl.start();
+
 }
 
 function fire() {
@@ -142,3 +213,52 @@ function fire() {
         numberOfActiveBullets++;
     }
 }
+
+
+
+function vibration () {
+    navigator.vibrate(1000);
+}
+
+//ACCEREROMETR -----------------------------------------------------
+/*
+  function getAcceleration() {
+     navigator.accelerometer.getCurrentAcceleration(
+        accelerometerSuccess, accelerometerError);
+
+     function accelerometerSuccess(acceleration) {
+        alert('Acceleration X: ' + acceleration.x + '\n' +
+           'Acceleration Y: ' + acceleration.y + '\n' +
+           'Acceleration Z: ' + acceleration.z + '\n' +
+           'Timestamp: '      + acceleration.timestamp + '\n');
+     };
+
+     function accelerometerError() {
+        alert('onError!');
+     };
+  }
+
+  function watchAcceleration() {
+     var accelerometerOptions = {
+        frequency: 3000
+     }
+     var watchID = navigator.accelerometer.watchAcceleration(
+        accelerometerSuccess, accelerometerError, accelerometerOptions);
+
+     function accelerometerSuccess(acceleration) {
+        alert('Acceleration X: ' + acceleration.x + '\n' +
+           'Acceleration Y: ' + acceleration.y + '\n' +
+           'Acceleration Z: ' + acceleration.z + '\n' +
+           'Timestamp: '      + acceleration.timestamp + '\n');
+
+        setTimeout(function() {
+           navigator.accelerometer.clearWatch(watchID);
+        }, 10000);
+     };
+
+     function accelerometerError() {
+        alert('onError!');
+     };
+
+  }
+*/

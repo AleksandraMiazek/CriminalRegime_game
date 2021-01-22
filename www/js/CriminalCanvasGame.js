@@ -28,6 +28,7 @@ class CriminalCanvasGame extends CanvasGame
                     mumies[j].setX(Math.random() * (canvas.width - 60));
                     mumies[j].setY(-100);
                     fireballs[i].setY(-canvas.height); //throw out of play area, automatically made not active bullet
+                    navigator.vibrate(100);
                 }
 
             }
@@ -54,6 +55,7 @@ class CriminalCanvasGame extends CanvasGame
                                  //skeletons are stronger !!
                             }
                         fireballs[i].setY(-canvas.height); //throw out of play area, automatically made not active bullet
+                        navigator.vibrate(100);
                     }
                 }
 
