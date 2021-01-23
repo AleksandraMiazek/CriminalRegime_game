@@ -3,7 +3,7 @@ class Fireball extends GameObject
 {
     constructor(image, sound, centreX)
     {
-        super(5);
+        super(2);
 
         this.image = image;
         this.sound = sound;
@@ -31,7 +31,12 @@ class Fireball extends GameObject
         {
             this.rotation = 360;
         }
-        this.centreY--;
+        if(gameObjects[POINTS_INFO].GetPoints() > 4000) {
+                this.centreY-=2;
+        }
+        else if(gameObjects[POINTS_INFO].GetPoints() < 4000) {
+                this.centreY--;
+        }
         if (this.centreY < 0 && this.active === true)
         {
          this.active = false;

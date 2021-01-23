@@ -13,3 +13,13 @@
 - szybkość poruszania się playera wzrasta po uzyskaniu 500 	punktów, a następnie 3000 
 - po zdobyciu 2000 punktów szkielety odradzają się silniejsze, aby je zabić potrzeba 3 strzałów
 - po przekroczeniu 2000 pkt magazynek na amunicje wzrasta do 15
+
+
+
+Monkeys Spinning Monkeys by Kevin MacLeod
+Link: https://incompetech.filmmusic.io/song/4071-monkeys-spinning-monkeys
+License: https://filmmusic.io/standard-license
+
+Meatball Parade by Kevin MacLeod
+Link: https://incompetech.filmmusic.io/song/4993-meatball-parade
+License: https://filmmusic.io/standard-license

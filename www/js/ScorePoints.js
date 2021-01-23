@@ -27,4 +27,8 @@ class ScorePoints extends GameObject
     {
         return this.points;
     }
+    addPoints(value)
+    {
+        this.points += value;
+    }
 }

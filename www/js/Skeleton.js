@@ -1,11 +1,12 @@
 
 class Skeleton extends GameObject
 {
-   constructor(image,x, y, width, height, updateStateMilliseconds, delay = 0)
+   constructor(image, nothingImg, x, y, width, height, updateStateMilliseconds, delay = 0)
     {
         super(updateStateMilliseconds, delay); /* as this class extends from GameObject, you must always call super() */
 
         this.skeletonImage = image;
+        this.nothingImg = nothingImg;
         this.width = width;
         this.height = height;
         this.x = x;
@@ -31,17 +32,22 @@ class Skeleton extends GameObject
         {
             this.y = -this.height;
             this.x = Math.random() * (canvas.width - 60);
+             if(gameObjects[POINTS_INFO].GetPoints() < 2000) {
+                 this.health = 2;
+             } else if(gameObjects[POINTS_INFO].GetPoints() > 2000) {
+                 this.health = 3;
+             }
         }
         // speed control -------------------------------------------
-        if(gameObjects[POINTS_INFO].GetPoints() === 200) {
-            this.speed=2;
-        } else if(gameObjects[POINTS_INFO].GetPoints() === 500) {
-            this.speed=3;
-        } else if(gameObjects[POINTS_INFO].GetPoints() === 1000) {
-            this.speed=4;
-        } else if(gameObjects[POINTS_INFO].GetPoints() === 3000) {
-            this.speed=5;
-        }//--------------------------------------------------------
+       if(gameObjects[POINTS_INFO].GetPoints() >= 500 && gameObjects[POINTS_INFO].GetPoints() < 1000) {
+           this.speed=2;
+       } else if(gameObjects[POINTS_INFO].GetPoints() >= 1000 && gameObjects[POINTS_INFO].GetPoints() < 3000) {
+           this.speed=3;
+       } else if(gameObjects[POINTS_INFO].GetPoints() >= 3000 && gameObjects[POINTS_INFO].GetPoints() < 7000) {
+           this.speed=4;
+       } else if(gameObjects[POINTS_INFO].GetPoints() >= 7000) {
+           this.speed=5;
+       }//--------------------------------------------------------
 
         this.currentgameObject++;
         if (this.currentgameObject === this.NUMBER_OF_SPRITES)
@@ -63,6 +69,8 @@ class Skeleton extends GameObject
 
     pointIsInsideBoundingRectangle(pointX, pointY)
     {
+           pointX+=10;
+            pointY+=10;
         if ((pointX > this.x) && (pointY > this.y))
         {
             if (pointX > this.x)
@@ -92,6 +100,9 @@ class Skeleton extends GameObject
         let SPRITE_WIDTH = ((this.skeletonImage.width - 5) / this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE); // the -5 is an adjustment so that this gameObject works
         let SPRITE_HEIGHT = (this.skeletonImage.height / this.NUMBER_OF_ROWS_IN_SPRITE_IMAGE);
         ctx.drawImage(this.skeletonImage, this.column * SPRITE_WIDTH, this.row * SPRITE_WIDTH, SPRITE_WIDTH, SPRITE_HEIGHT, this.x, this.y, this.width, this.height);
+    }
+    setNothingImg() {
+        this.skeletonImage = this.nothingImg;
     }
     setX(value) {
         this.x = value;

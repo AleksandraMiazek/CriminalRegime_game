@@ -29,6 +29,8 @@ class CriminalCanvasGame extends CanvasGame
                     mumies[j].setY(-100);
                     fireballs[i].setY(-canvas.height); //throw out of play area, automatically made not active bullet
                     navigator.vibrate(100);
+                    gameObjects[POINTS_INFO].addPoints(30);
+                    killedMumies++;
                 }
 
             }
@@ -40,7 +42,7 @@ class CriminalCanvasGame extends CanvasGame
                         skeletons[j].reduceHealth();
                         fireballs[i].setY(-canvas.height); //throw out of play area, automatically made not active bullet
                     }
-                    else if(skeletons[j].getHealth() === 1)  //the enemy dies
+                    else if(skeletons[j].getHealth() === 1)  //the skeleton dies
                     {
                         let expX = fireballs[i].getCentreX();
                         let expY = fireballs[i].getCentreY();
@@ -56,17 +58,27 @@ class CriminalCanvasGame extends CanvasGame
                             }
                         fireballs[i].setY(-canvas.height); //throw out of play area, automatically made not active bullet
                         navigator.vibrate(100);
+                        gameObjects[POINTS_INFO].addPoints(60);
+                        killedSkeletons++;
                     }
                 }
-
             }
-
-         /*   if ( gameObjects[player].pointIsInsideBoundingRectangle(mumies[i].getX(), mumies[i].getY()) ) //enemy touch player
-            {
-                //alert("mumia touch player COLISION DETECTION FUNCTION ALERT");
-            } */
         }
-
+        // enemy touch player ------------
+        for (let k = 0; k < mumies.length; k++) {
+            if(mumies[k].pointIsInsideBoundingRectangle(gameObjects[player].getCentreX(),gameObjects[player].getCentreY() ))
+            {
+                killer_mumia = k;
+                gameOver();
+            }
+        }
+         for (let e = 0; e < skeletons.length; e++) {
+            if(skeletons[e].pointIsInsideBoundingRectangle(gameObjects[player].getCentreX(),gameObjects[player].getCentreY() ))
+            {
+                killer_skeleton = e;
+                gameOver();
+            }
+        }
     }
     render()
     {
@@ -79,7 +91,6 @@ class CriminalCanvasGame extends CanvasGame
         for (let j = 0; j < mumies.length; j++)
         {
             mumies[j].render();
-           // alert("mumia[i] x = "+mumies[i].getX());
         }
         for (let k = 0; k < skeletons.length; k++)
         {

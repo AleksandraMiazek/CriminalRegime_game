@@ -25,17 +25,23 @@ class Player extends GameObject
     }
     updateState()
     {
-       if(gameObjects[POINTS_INFO].GetPoints() === 500) {
+       if(gameObjects[POINTS_INFO].GetPoints() >= 300 && gameObjects[POINTS_INFO].GetPoints() < 1000 ) {
             this.PLAYER_SPEED = 3;
         }
-        else if(gameObjects[POINTS_INFO].GetPoints() === 3000) {
+        else if(gameObjects[POINTS_INFO].GetPoints() >= 1000  && gameObjects[POINTS_INFO].GetPoints() < 3000) {
             this.PLAYER_SPEED = 4;
         }
-        if (this.direction === UP)
+        else if(gameObjects[POINTS_INFO].GetPoints() >=3000  && gameObjects[POINTS_INFO].GetPoints() < 10000) {
+            this.PLAYER_SPEED = 5;
+        }
+       /* else if(gameObjects[POINTS_INFO].GetPoints() >= 10000) {
+             this.PLAYER_SPEED = 6;
+        } */
+      /*  if (this.direction === UP)
         {
            // this.centreY -= this.PLAYER_SPEED;
-        }
-        else if (this.direction === LEFT)
+        } */
+         if (this.direction === LEFT)
         {
           if(this.centreX <= 10 ) {
             this.setDirection(UP);
@@ -43,10 +49,10 @@ class Player extends GameObject
             this.centreX -= this.PLAYER_SPEED;
           }
         }
-        /*else if (this.direction === DOWN)
+       /* else if (this.direction === DOWN)
         {
-           this.centreY += this.PLAYER_SPEED;
-        }*/
+           //this.centreY += this.PLAYER_SPEED;
+        } */
         else if (this.direction === RIGHT)
         {
           if(this.centreX >= canvas.width -  (this.WIDTH_OF_PLAYER_ON_CANVAS/2) ) {

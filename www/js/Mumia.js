@@ -1,12 +1,12 @@
 
 class Mumia extends GameObject
 {
-    constructor(image,x, y, width, height, updateStateMilliseconds, delay = 0)
+    constructor(image, nothingImg, x, y, width, height, updateStateMilliseconds, delay = 0)
     {
         super(updateStateMilliseconds, delay);
 
-
         this.mumiaImage = image;
+        this.nothingImg = nothingImg;
         this.width = width;
         this.height = height;
         this.x = x;
@@ -33,13 +33,13 @@ class Mumia extends GameObject
             this.x = Math.random() * (canvas.width - 60);
         }
         // speed control -------------------------------------------
-        if(gameObjects[POINTS_INFO].GetPoints() === 200) {
+        if(gameObjects[POINTS_INFO].GetPoints() >= 200 && gameObjects[POINTS_INFO].GetPoints() < 500) {
             this.speed=2;
-        } else if(gameObjects[POINTS_INFO].GetPoints() === 500) {
+        } else if(gameObjects[POINTS_INFO].GetPoints() >= 500 && gameObjects[POINTS_INFO].GetPoints() < 1000) {
             this.speed=3;
-        } else if(gameObjects[POINTS_INFO].GetPoints() === 1000) {
+        } else if(gameObjects[POINTS_INFO].GetPoints() >= 1000 && gameObjects[POINTS_INFO].GetPoints() < 3000) {
             this.speed=4;
-        } else if(gameObjects[POINTS_INFO].GetPoints() === 3000) {
+        } else if(gameObjects[POINTS_INFO].GetPoints() >= 3000) {
             this.speed=5;
         }//--------------------------------------------------------
 
@@ -59,6 +59,9 @@ class Mumia extends GameObject
                 this.row++;
             }
         }
+    }
+    setNothingImg() {
+        this.mumiaImage = this.nothingImg;
     }
     setX(value) {
         this.x = value;

@@ -44,15 +44,6 @@ function onAllAssetsLoaded()
     /* hide the webpage loading message */
     document.getElementById('loadingMessage').style.visibility = "hidden";
 
- // accelerometr ----------------------------------------------------------
-      document.getElementById("getAcceleration").addEventListener("click", getAcceleration);
-          document.getElementById("watchAcceleration").addEventListener(
-             "click", watchAcceleration);
-
-            //vibration test--------------
-             document.getElementById("vibration").addEventListener("click", vibration);
-  //---------------------------------------------------------------
-
     /* Initialise the canvas and associated variables */
     /* This code never changes                        */
     canvas = document.getElementById("gameCanvas");
