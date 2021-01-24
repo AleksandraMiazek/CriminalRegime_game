@@ -52,6 +52,9 @@ playerImage.src = "img/darkplayer.png";
 let fireballImage = new Image();
 fireballImage.src = "img/ninja_bullet.png";
 
+let coinImage = new Image();
+coinImage.src = "img/coin.png";
+
 const BACKGROUND = 0;
 const UP = 0;
 const LEFT = 1;
@@ -70,6 +73,9 @@ const GAME_OVER_INFO_2 = 12;
 const GAME_OVER_INFO_3 = 13;
 const GAME_OVER_INFO_4 = 14;
 const GAME_OVER_INFO_5 = 15;
+const GAME_OVER_INFO_6 = 16;
+const GAME_OVER_INFO_7 = 17;
+const GAME_OVER_INFO_8 = 18;
 
 /* Instead of using gameObject[],  gameObject variables */
 let target = null;
@@ -77,6 +83,8 @@ let points = 0;  //no points to start
 let fireballs = [];
 let mumies = [];
 let skeletons = [];
+let coins = [];
+let numberOfCoins = 0;
 let numberOfSkeletons = 0;
 let numberOfMumies = 0;
 let numberOfBulletsFired = 0; // no bullets fired yet
@@ -84,6 +92,7 @@ let numberOfActiveBullets = 0;
 let availableBullets = 5 ;  // available bullets at the beginning of the game
 let killedMumies = 0;
 let killedSkeletons = 0;
+let earnedCoins = 0;
 
 let dayTimer;
 let day = true;
@@ -108,6 +117,7 @@ function playGame()
 
     let mumia_delay = 200;
     let skeleton_delay = 3000;
+    let coin_delay = 5500;
     for(let i = 0; i<4; i++) {
         mumies[numberOfMumies] = new Mumia(mumiaImage, nothingImg, Math.random() * (canvas.width - 60), -90, 85, 85, 50, mumia_delay );
         mumies[numberOfMumies].start();
@@ -119,6 +129,12 @@ function playGame()
         skeletons[numberOfSkeletons].start();
         numberOfSkeletons++;
         skeleton_delay+=5500;
+    }
+    for(let k = 0; k<2; k++) {
+        coins[numberOfCoins] = new Bonus(coinImage, nothingImg, Math.random() * (canvas.width - 60), -90, 35, 35, 90, skeleton_delay );
+        coins[numberOfCoins].start();
+        numberOfCoins++;
+        skeleton_delay+=15000;
     }
 
     let game = new CriminalCanvasGame();
@@ -224,15 +240,22 @@ function gameOver() {
         skeletons[k].stop();
         skeletons[k].setNothingImg();
     }
+    for (let e = 0; e < coins.length; e++)
+    {
+        coins[e].stop();
+        coins[e].setNothingImg();
+    }
     gameObjects[player].setDirection(DOWN);
     gameObjects[BACKGROUND].stop();
     gameObjects[POINTS_INFO].stop();
     gameObjects[BULLET_INFO].stop();
 
-    gameObjects[LOSE_MESSAGE] = new StaticText("GAME OVER!", canvas.width/5, 200, "Cambria", 36, "red");
+    gameObjects[LOSE_MESSAGE] = new StaticText("GAME OVER!", canvas.width/5, 170, "Cambria", 36, "red");
         gameObjects[LOSE_MESSAGE].start();
-    gameObjects[GAME_OVER_INFO_1] = new StaticText("POINTS: " + gameObjects[POINTS_INFO].GetPoints(), canvas.width/4, 250, "Cambria", 26, "white");
+    gameObjects[GAME_OVER_INFO_1] = new StaticText("TOTAL POINTS:", canvas.width/4, 220, "Cambria", 26, "black");
         gameObjects[GAME_OVER_INFO_1].start();
+    gameObjects[GAME_OVER_INFO_8] = new StaticText(gameObjects[POINTS_INFO].GetPoints(), (canvas.width/3 + canvas.width/9), 260, "Cambria", 28, "black");
+         gameObjects[GAME_OVER_INFO_8].start();
     gameObjects[GAME_OVER_INFO_2] = new StaticText("Fired bullets: " + numberOfBulletsFired, canvas.width/4, 300, "Cambria", 20, "white");
         gameObjects[GAME_OVER_INFO_2].start();
     gameObjects[GAME_OVER_INFO_3] = new StaticText("Killed enemies: " + (killedMumies+killedSkeletons), canvas.width/4, 330, "Cambria", 20, "white");
@@ -241,4 +264,8 @@ function gameOver() {
         gameObjects[GAME_OVER_INFO_4].start();
     gameObjects[GAME_OVER_INFO_5] = new StaticText("Skeletons: " + killedSkeletons, canvas.width/4, 390, "Cambria", 20, "white");
         gameObjects[GAME_OVER_INFO_5].start();
+    gameObjects[GAME_OVER_INFO_6] = new StaticText("Points from coins: " + (earnedCoins*100), canvas.width/4, 420, "Cambria", 20, "white");
+        gameObjects[GAME_OVER_INFO_6].start();
+    gameObjects[GAME_OVER_INFO_7] = new StaticText("("+ earnedCoins + " coins)", canvas.width/4, 450, "Cambria", 20, "white");
+       gameObjects[GAME_OVER_INFO_7].start();
 }

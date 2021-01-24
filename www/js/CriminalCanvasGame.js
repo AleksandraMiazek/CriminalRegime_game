@@ -71,10 +71,21 @@ class CriminalCanvasGame extends CanvasGame
                 gameOver();
             }
         }
-         for (let e = 0; e < skeletons.length; e++) {
+        for (let e = 0; e < skeletons.length; e++) {
             if(skeletons[e].pointIsInsideBoundingRectangle(gameObjects[player].getCentreX(),gameObjects[player].getCentreY() ))
             {
                 gameOver();
+            }
+        }
+        //bonus coins
+        for (let f = 0; f < coins.length; f++) {
+            if(coins[f].pointIsInsideBoundingRectangle(gameObjects[player].getCentreX(),gameObjects[player].getCentreY() ))
+            {
+                navigator.vibrate(120);
+                gameObjects[POINTS_INFO].addPoints(100);
+                coins[f].setX(Math.random() * (canvas.width - 40));
+                coins[f].setY(-150);
+                earnedCoins++;
             }
         }
     }
@@ -93,6 +104,10 @@ class CriminalCanvasGame extends CanvasGame
         for (let k = 0; k < skeletons.length; k++)
         {
             skeletons[k].render();
+        }
+        for (let e = 0; e < coins.length; e++)
+        {
+            coins[e].render();
         }
 
     }
