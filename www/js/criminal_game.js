@@ -37,6 +37,12 @@ giggleSound.src = 'audio/Giggle.mp3';
 let explosionSound = new Audio();
 explosionSound.src = 'audio/Cannon.mp3';
 
+let bonusSound = new Audio();
+bonusSound.src = 'audio/bonus.mp3';
+
+let ammunationSound = new Audio();
+ammunationSound.src = 'audio/GunReload.mp3';
+
 let skeletonImage = new Image();
 skeletonImage.src = "img/skeleton_down.png";
 
@@ -55,6 +61,9 @@ fireballImage.src = "img/ninja_bullet.png";
 let coinImage = new Image();
 coinImage.src = "img/coin.png";
 
+let bagImage = new Image();
+bagImage.src = "img/bag2.png";
+
 const BACKGROUND = 0;
 const UP = 0;
 const LEFT = 1;
@@ -66,16 +75,17 @@ const BULLET_INFO = 6;
 const MUMIA = 7;
 const EXPLOSION = 8;
 const player = 9;
+const BAG = 10;
 
-const LOSE_MESSAGE = 10;
-const GAME_OVER_INFO_1 = 11;
-const GAME_OVER_INFO_2 = 12;
-const GAME_OVER_INFO_3 = 13;
-const GAME_OVER_INFO_4 = 14;
-const GAME_OVER_INFO_5 = 15;
-const GAME_OVER_INFO_6 = 16;
-const GAME_OVER_INFO_7 = 17;
-const GAME_OVER_INFO_8 = 18;
+const LOSE_MESSAGE = 11;
+const GAME_OVER_INFO_1 = 12;
+const GAME_OVER_INFO_2 = 13;
+const GAME_OVER_INFO_3 = 14;
+const GAME_OVER_INFO_4 = 15;
+const GAME_OVER_INFO_5 = 16;
+const GAME_OVER_INFO_6 = 17;
+const GAME_OVER_INFO_7 = 18;
+const GAME_OVER_INFO_8 = 19;
 
 /* Instead of using gameObject[],  gameObject variables */
 let target = null;
@@ -110,10 +120,10 @@ function playGame()
     soundtruck.play();
 
     gameObjects[BACKGROUND] = new ScrollingBackgroundImage(backgroundImage, backgroundNightImage, backgroundJungleImage, 25);
-
     gameObjects[player] = new Player(playerImage, canvas.width/2, canvas.height - 75);
     gameObjects[POINTS_INFO] = new ScorePoints(points, 800);
     gameObjects[BULLET_INFO] = new BulletsControler(availableBullets, 1500);
+    gameObjects[BAG] = new Bonus(bagImage, nothingImg, ammunationSound, Math.random() * (canvas.width - 60), -90, 55, 75, 90, 7000, 8, 8);
 
     let mumia_delay = 200;
     let skeleton_delay = 3000;
@@ -131,10 +141,10 @@ function playGame()
         skeleton_delay+=5500;
     }
     for(let k = 0; k<2; k++) {
-        coins[numberOfCoins] = new Bonus(coinImage, nothingImg, Math.random() * (canvas.width - 60), -90, 35, 35, 90, skeleton_delay );
+        coins[numberOfCoins] = new Bonus(coinImage, nothingImg, bonusSound, Math.random() * (canvas.width - 60), -90, 35, 35, 90, coin_delay, 6, 6);
         coins[numberOfCoins].start();
         numberOfCoins++;
-        skeleton_delay+=15000;
+        coin_delay+=7000;
     }
 
     let game = new CriminalCanvasGame();
@@ -249,6 +259,8 @@ function gameOver() {
     gameObjects[BACKGROUND].stop();
     gameObjects[POINTS_INFO].stop();
     gameObjects[BULLET_INFO].stop();
+    gameObjects[BAG].stop();
+    gameObjects[BAG].setNothingImg();
 
     gameObjects[LOSE_MESSAGE] = new StaticText("GAME OVER!", canvas.width/5, 170, "Cambria", 36, "red");
         gameObjects[LOSE_MESSAGE].start();
@@ -268,4 +280,6 @@ function gameOver() {
         gameObjects[GAME_OVER_INFO_6].start();
     gameObjects[GAME_OVER_INFO_7] = new StaticText("("+ earnedCoins + " coins)", canvas.width/4, 450, "Cambria", 20, "white");
        gameObjects[GAME_OVER_INFO_7].start();
+
+
 }

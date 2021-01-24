@@ -1,4 +1,5 @@
-
+//This class is for point display and manipulation
+//---
 class ScorePoints extends GameObject
 {
     constructor(value, updateStateMilliseconds)

@@ -1,4 +1,6 @@
-
+// Mumia enemy, need one bullet to kill
+// is getting faster than skeleton
+// ---
 class Mumia extends GameObject
 {
     constructor(image, nothingImg, x, y, width, height, updateStateMilliseconds, delay = 0)

@@ -77,7 +77,7 @@ class CriminalCanvasGame extends CanvasGame
                 gameOver();
             }
         }
-        //bonus coins
+        //bonus coins ------------
         for (let f = 0; f < coins.length; f++) {
             if(coins[f].pointIsInsideBoundingRectangle(gameObjects[player].getCentreX(),gameObjects[player].getCentreY() ))
             {
@@ -85,8 +85,18 @@ class CriminalCanvasGame extends CanvasGame
                 gameObjects[POINTS_INFO].addPoints(100);
                 coins[f].setX(Math.random() * (canvas.width - 40));
                 coins[f].setY(-150);
+                coins[f].playSound();
                 earnedCoins++;
             }
+        }
+        //ammunation bag ------------
+         if(gameObjects[BAG].pointIsInsideBoundingRectangle(gameObjects[player].getCentreX(),gameObjects[player].getCentreY() ))
+        {
+            navigator.vibrate(120);
+            gameObjects[BULLET_INFO].addBullets(10);
+            gameObjects[BAG].setX(Math.random() * (canvas.width - 40));
+            gameObjects[BAG].setY(-400);
+            gameObjects[BAG].playSound();
         }
     }
     render()

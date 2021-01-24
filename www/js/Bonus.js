@@ -1,19 +1,22 @@
+// Class responsible for: bonus coins and bag with ammunition
+//---
 
 class Bonus extends GameObject
 {
-    constructor(image, nothingImg, x, y, width, height, updateStateMilliseconds, delay = 0)
+    constructor(image, nothingImg, sound, x, y, width, height, updateStateMilliseconds, delay = 0, spritesAmount, spritesCol)
     {
         super(updateStateMilliseconds, delay);
 
         this.image = image;
+        this.sound = sound;
         this.nothingImg = nothingImg;
         this.width = width;
         this.height = height;
         this.x = x;
         this.y = y;
 
-        this.NUMBER_OF_SPRITES = 6; // the number of gameObjects in the gameObject image
-        this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE = 6; // the number of columns in the gameObject image
+        this.NUMBER_OF_SPRITES = spritesAmount; // the number of gameObjects in the gameObject image
+        this.NUMBER_OF_COLUMNS_IN_SPRITE_IMAGE = spritesCol; // the number of columns in the gameObject image
         this.NUMBER_OF_ROWS_IN_SPRITE_IMAGE = 1; // the number of rows in the gameObject image
         this.currentgameObject = 0;
 
@@ -77,6 +80,9 @@ class Bonus extends GameObject
     }
     getHeight() {
         return this.height;
+    }
+    playSound() {
+        this.sound.play();
     }
      pointIsInsideBoundingRectangle(pointX, pointY)
     {

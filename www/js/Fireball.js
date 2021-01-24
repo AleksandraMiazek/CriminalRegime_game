@@ -1,3 +1,5 @@
+// Class rendering single bullet
+//---
 
 class Fireball extends GameObject
 {
@@ -11,7 +13,6 @@ class Fireball extends GameObject
         this.height = 22;
         this.centreX = centreX;
         this.centreY = canvas.height - this.height - 15;
-      //  this.stepSize = -1;
         this.rotation = 360;
         this.active = true;
 
@@ -41,7 +42,6 @@ class Fireball extends GameObject
         {
          this.active = false;
           numberOfActiveBullets--;   //the ball after touching the edge of the canvas becomes inactive
-         // alert(" numberOfActiveBullets: " +  numberOfActiveBullets);
         }
     }
 

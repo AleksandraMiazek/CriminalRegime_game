@@ -1,9 +1,8 @@
-/* Author: Derek O Reilly, Dundalk Institute of Technology, Ireland. */
-/* The Explosion GameObject is an animated gameObject of an explosion    */
+// This class makes explosion sound and animation when we kill enemy
+//---
 
 class Explosion extends GameObject
 {
-    /* Each gameObject MUST have a constructor() and a render() method.        */
     /* If the object animates, then it must also have an updateState() method. */
 
     constructor(explosionImage, explosionSound, centreX, centreY, size, delay = 0)

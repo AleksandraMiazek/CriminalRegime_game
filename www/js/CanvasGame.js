@@ -6,11 +6,6 @@
 /*                                                                                                     */
 /*******************************************************************************************************/
 
-
-/* Author: Derek O Reilly, Dundalk Institute of Technology, Ireland.                                                   */
-/* The CanvasGame class is responsible for rendering all of the gameObjects and other game graphics on the canvas.         */
-/* If you want to implement collision detection in your game, then you MUST overwrite the collisionDetection() method. */
-
 class CanvasGame
 {
     constructor()

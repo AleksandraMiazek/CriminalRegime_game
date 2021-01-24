@@ -1,10 +1,6 @@
-const STATIC_TEXT_CENTRE = -1;
 
 class StaticText extends GameObject
 {
-    /* Each gameObject MUST have a constructor() and a render() method.        */
-    /* If the object animates, then it must also have an updateState() method. */
-
     constructor(text, x, y, font, fontSize, colour)
     {
         super(null); /* as this class extends from GameObject, you must always call super() */

@@ -1,3 +1,5 @@
+//Class responsible for modyfing and display information about available bullets
+//---
 
 class BulletsControler extends GameObject
 {
@@ -39,5 +41,8 @@ class BulletsControler extends GameObject
     bulletFired()
     {
         this.bullets--;
+    }
+    addBullets(value) {
+        this.bullets += value;
     }
 }
