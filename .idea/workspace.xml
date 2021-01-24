@@ -3,18 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="23666364-4419-42e2-89b3-9e2c238a1d8f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/Bonus.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/Bonus.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/BulletsControler.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/BulletsControler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/CanvasGame.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/CanvasGame.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/CriminalCanvasGame.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/CriminalCanvasGame.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/Explosion.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/Explosion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/Fireball.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/Fireball.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/GameObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/GameObject.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/Mumia.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/Mumia.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/ScorePoints.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/ScorePoints.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/StaticText.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/StaticText.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/criminal_game.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/criminal_game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
