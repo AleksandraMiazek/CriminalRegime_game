@@ -68,14 +68,12 @@ class CriminalCanvasGame extends CanvasGame
         for (let k = 0; k < mumies.length; k++) {
             if(mumies[k].pointIsInsideBoundingRectangle(gameObjects[player].getCentreX(),gameObjects[player].getCentreY() ))
             {
-                killer_mumia = k;
                 gameOver();
             }
         }
          for (let e = 0; e < skeletons.length; e++) {
             if(skeletons[e].pointIsInsideBoundingRectangle(gameObjects[player].getCentreX(),gameObjects[player].getCentreY() ))
             {
-                killer_skeleton = e;
                 gameOver();
             }
         }

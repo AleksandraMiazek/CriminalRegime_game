@@ -84,8 +84,6 @@ let numberOfActiveBullets = 0;
 let availableBullets = 5 ;  // available bullets at the beginning of the game
 let killedMumies = 0;
 let killedSkeletons = 0;
-let killer_mumia = null;
-let killer_skeleton = null;
 
 let dayTimer;
 let day = true;
@@ -207,7 +205,6 @@ function fire() {
     }
 }
 function gameOver() {
-    navigator.vibrate(130);
     soundtruck.pause();
     endSound.play();
     endSound.loop = false;
@@ -221,37 +218,27 @@ function gameOver() {
     {
         mumies[j].stop();
         mumies[j].setNothingImg();
-      /*  if(j != killer_mumia) {
-            delete mumies[j];
-        } */
     }
     for (let k = 0; k < skeletons.length; k++)
     {
         skeletons[k].stop();
         skeletons[k].setNothingImg();
-      /*  if (k != killer_skeleton) {
-            delete skeletons[k];
-        } */
     }
     gameObjects[player].setDirection(DOWN);
     gameObjects[BACKGROUND].stop();
     gameObjects[POINTS_INFO].stop();
     gameObjects[BULLET_INFO].stop();
 
-    gameObjects[LOSE_MESSAGE] = new StaticText("GAME OVER!", canvas.width/4, 200, "Cambria", 36, "red");
-     gameObjects[10].start();
-    gameObjects[GAME_OVER_INFO_1] = new StaticText("POINTS: " + gameObjects[POINTS_INFO].GetPoints(), canvas.width/3, 250, "Cambria", 26, "white");
-    gameObjects[11].start();
-    gameObjects[GAME_OVER_INFO_2] = new StaticText("Fired bullets: " + numberOfBulletsFired, canvas.width/3, 300, "Cambria", 20, "white");
-    gameObjects[12].start();
-    gameObjects[GAME_OVER_INFO_3] = new StaticText("Killed enemies: " + (killedMumies+killedSkeletons), canvas.width/3, 330, "Cambria", 20, "white");
-    gameObjects[13].start();
-    gameObjects[GAME_OVER_INFO_4] = new StaticText("Mumies: " + killedMumies, canvas.width/3, 360, "Cambria", 20, "WhiteSmoke");
-    gameObjects[14].start();
-    gameObjects[GAME_OVER_INFO_5] = new StaticText("Skeletons: " + killedSkeletons, canvas.width/3, 390, "Cambria", 20, "WhiteSmoke");
-    gameObjects[15].start();
-  /*  for(let e = 10; e <= 15; e++) {
-        gameObjects[e].start();
-    } */
-
+    gameObjects[LOSE_MESSAGE] = new StaticText("GAME OVER!", canvas.width/5, 200, "Cambria", 36, "red");
+        gameObjects[LOSE_MESSAGE].start();
+    gameObjects[GAME_OVER_INFO_1] = new StaticText("POINTS: " + gameObjects[POINTS_INFO].GetPoints(), canvas.width/4, 250, "Cambria", 26, "white");
+        gameObjects[GAME_OVER_INFO_1].start();
+    gameObjects[GAME_OVER_INFO_2] = new StaticText("Fired bullets: " + numberOfBulletsFired, canvas.width/4, 300, "Cambria", 20, "white");
+        gameObjects[GAME_OVER_INFO_2].start();
+    gameObjects[GAME_OVER_INFO_3] = new StaticText("Killed enemies: " + (killedMumies+killedSkeletons), canvas.width/4, 330, "Cambria", 20, "white");
+        gameObjects[GAME_OVER_INFO_3].start();
+    gameObjects[GAME_OVER_INFO_4] = new StaticText("Mumies: " + killedMumies, canvas.width/4, 360, "Cambria", 20, "white");
+        gameObjects[GAME_OVER_INFO_4].start();
+    gameObjects[GAME_OVER_INFO_5] = new StaticText("Skeletons: " + killedSkeletons, canvas.width/4, 390, "Cambria", 20, "white");
+        gameObjects[GAME_OVER_INFO_5].start();
 }

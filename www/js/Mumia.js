@@ -80,8 +80,8 @@ class Mumia extends GameObject
     }
      pointIsInsideBoundingRectangle(pointX, pointY)
     {
-    pointX+=25;
-    pointY+=25;
+    pointX+=15;
+    pointY+=15;
         if ((pointX > this.x) && (pointY > this.y))
         {
             if (pointX > this.x)
