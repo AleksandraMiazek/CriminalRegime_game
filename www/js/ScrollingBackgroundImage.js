@@ -29,13 +29,17 @@ class ScrollingBackgroundImage extends GameObject
        if (gameObjects[POINTS_INFO].GetPoints() >=10000  && gameObjects[POINTS_INFO].GetPoints() < 10500) {
               this.secondLvl = false;
         }
+      if (gameObjects[POINTS_INFO].GetPoints() >=20000  && gameObjects[POINTS_INFO].GetPoints() < 20500) {
+               this.secondLvl = true;
+       }
+       if (gameObjects[POINTS_INFO].GetPoints() >=26000  && gameObjects[POINTS_INFO].GetPoints() < 26500) {
+              this.secondLvl = false;
+       }
         if (this.y <= -canvas.height)
         {
             this.y = 0;
             this.amount++;
-            //alert(this.amount + "isDay: " + this.isDay);
-           //  this.image = this.night_img;
-           if (this.amount === 2 && this.secondLvl === false) {
+           if (this.amount >= 2 && this.secondLvl === false) {
                if(this.isDay === false) {
                    this.image = this.day_img;
                    this.isDay = true;
