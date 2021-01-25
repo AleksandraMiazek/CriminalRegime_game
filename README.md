@@ -1,3 +1,5 @@
+### Criminal Game 
+Game for android and browser platforms. Detailed description below.
 ![Screeny z gry](./screens/screen.png)
 
 ### Description: 
@@ -26,3 +28,11 @@ skeleton and bonuses: 500, 1000, 3000, 7000
 player: 300, 1000, 3000
 - Total points, numberOfBulletsFired, Killed enemies broken down by type (mumia/skeleton), earnedCoins  are counted and displayed at the end of the game
 
+
+### Technologies
+Project is created with:
+* Apache Cordova: 10.0
+
+
+#### Author 
+Aleksandra Miazek
