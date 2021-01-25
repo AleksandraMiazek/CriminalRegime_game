@@ -5,7 +5,7 @@
 - control the player with right, left, up arrows and accelerometer on the phone
 - shouting by clicking spacebar or tap to screen
 - scrolling background, it gets day and night
-  in the point range from 8 to 10.5 thousand we enter the jungle  
+  in the point range from 8 to 10.5 and from 20 to 26 thousand we enter the jungle  
   (the background is changes)
 - applied animated sprites for player, enemies and bonuses
 - sound effects, vibration when we shooting or collect bonuses
