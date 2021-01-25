@@ -1,3 +1,4 @@
+![Screeny z gry](./screens/screen.png)
 
 ### Description: 
 - this is type of endless game
