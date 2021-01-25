@@ -1,3 +1,4 @@
+const STATIC_TEXT_CENTRE = -1;
 
 class StaticText extends GameObject
 {
