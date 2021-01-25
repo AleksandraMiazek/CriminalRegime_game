@@ -1,5 +1,5 @@
 
-###Description: 
+### Description: 
 - this is type of endless game
 - if the enemy hits the player it's game over 
 - control the player with right, left, up arrows and accelerometer on the phone
