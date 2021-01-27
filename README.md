@@ -16,7 +16,7 @@ Game for android and browser platforms. Detailed description below.
 - the mumia dies after the one shot, the skeleton after 2.
 - after 2000 points the skeletons respawn stronger, to kill them it takes 3 shots
 - points increase with time and also by killing monsters and collecting coins
-- killing a mumia gives 30 (thirty) points, a skeleton 60 points, and a coin gives 100 points.
+- killing a mumia gives 30 points, a skeleton 60 points, and a coin gives 100 points.
 - the number of available bullets grows over time. Maximum 10
   After 2000 points: 15 max
 - catching the backpack bonus gives you +10 bullets
