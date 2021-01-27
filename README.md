@@ -20,7 +20,6 @@ Game for android and browser platforms. Detailed description below.
 - the number of available bullets grows over time. Maximum 10
   After 2000 points: 15 max
 - catching the backpack bonus gives you +10 bullets
-- the bullet becomes inactive when it touches the top of the canvas  
 - after scoring a certain number of points, the enemies get faster
 - faster breakpoints for 
 mumia: 200, 500, 1000, 3000
