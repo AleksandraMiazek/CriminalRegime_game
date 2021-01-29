@@ -1,10 +1,28 @@
 
 /************** Declare data and functions that are needed for all games ************/
 
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+/*  var firebaseConfig = {
+    apiKey: "AIzaSyBUljn9iMj6_nSGkCDwz5q9UpJjLuhMLHc",
+    authDomain: "criminal-game.firebaseapp.com",
+    projectId: "criminal-game",
+    storageBucket: "criminal-game.appspot.com",
+    messagingSenderId: "432391429409",
+    appId: "1:432391429409:web:c6d3774be9eb0c56037260",
+    measurementId: "G-MKVM922TG1"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  var db = firebase.firestore();
+ // db.settings({timestampsInSnapshots: true});
+*/
+
 /* Always create a canvas and a ctx */
 let canvas = null;
 let ctx = null;
-
+let playerName = prompt("Please enter your name");
 /* Always create an array that holds the default game gameObjects */
 let gameObjects = [];
 
@@ -36,6 +54,7 @@ function onAllAssetsLoaded()
     ctx = canvas.getContext("2d");
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
+
 
     playGame(); // Each game will include its own .js file, which will hold the game's palyGame() function
 }

@@ -12,6 +12,7 @@ class StaticText extends GameObject
         this.font = font;
         this.fontSize = fontSize;
         this.colour = colour;
+        this.hide = false;
 
         ctx.font = this.fontSize + "px " + this.font;
         this.width = ctx.measureText(this.text).width;
@@ -26,4 +27,5 @@ class StaticText extends GameObject
         ctx.font = this.fontSize + "px " + this.font; // need to set the font each time, as it might have been changed by other gameObjects.
         ctx.fillText(this.text, this.x, this.y);
     }
+
 }

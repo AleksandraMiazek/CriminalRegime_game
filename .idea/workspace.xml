@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23666364-4419-42e2-89b3-9e2c238a1d8f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/www/js/Button.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/js/ScrollingText.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/js/ScrollingBackgroundImage.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/ScrollingBackgroundImage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/css/game.css" beforeDir="false" afterPath="$PROJECT_DIR$/www/css/game.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/CriminalCanvasGame.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/CriminalCanvasGame.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/StaticText.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/StaticText.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/criminal_game.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/criminal_game.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,7 +24,7 @@
   <component name="ProjectId" id="1n0ubwED1Czy2tqRsZeq1KVxwK3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/www/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -56,7 +63,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

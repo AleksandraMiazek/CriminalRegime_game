@@ -28,6 +28,9 @@ backgroundJungleImage.src = "img/jungle.png";
 let nothingImg = new Image();
 nothingImg.src = "img/nothing.png";
 
+let backImg = new Image();
+backImg.src = "img/back.jpg";
+
 let bulletSound = document.createElement('audio');
 bulletSound.src = 'audio/Arrow.mp3';
 
@@ -94,6 +97,7 @@ let fireballs = [];
 let mumies = [];
 let skeletons = [];
 let coins = [];
+let rankingArray = [];
 let numberOfCoins = 0;
 let numberOfSkeletons = 0;
 let numberOfMumies = 0;
@@ -112,6 +116,9 @@ let acl = new Accelerometer({frequency: 20});
 let left_move = false;
 let right_move = false;
 let up_move = false;
+
+let setResult = false;
+let stop = false;
 /******************* END OF Declare game specific data and functions *****************/
 
 
@@ -257,29 +264,79 @@ function gameOver() {
     }
     gameObjects[player].setDirection(DOWN);
     gameObjects[BACKGROUND].stop();
-    gameObjects[POINTS_INFO].stop();
-    gameObjects[BULLET_INFO].stop();
+    gameObjects[POINTS_INFO].stopAndHide();
+    gameObjects[BULLET_INFO].stopAndHide();
     gameObjects[BAG].stop();
     gameObjects[BAG].setNothingImg();
+    let totalPoints = gameObjects[POINTS_INFO].GetPoints();
 
-    gameObjects[LOSE_MESSAGE] = new StaticText("GAME OVER!", canvas.width/5, 170, "Cambria", 36, "red");
-        gameObjects[LOSE_MESSAGE].start();
-    gameObjects[GAME_OVER_INFO_1] = new StaticText("TOTAL POINTS:", canvas.width/4, 220, "Cambria", 26, "black");
-        gameObjects[GAME_OVER_INFO_1].start();
-    gameObjects[GAME_OVER_INFO_8] = new StaticText(gameObjects[POINTS_INFO].GetPoints(), (canvas.width/3 + canvas.width/9), 260, "Cambria", 28, "black");
-         gameObjects[GAME_OVER_INFO_8].start();
-    gameObjects[GAME_OVER_INFO_2] = new StaticText("Fired bullets: " + numberOfBulletsFired, canvas.width/4, 300, "Cambria", 20, "white");
-        gameObjects[GAME_OVER_INFO_2].start();
-    gameObjects[GAME_OVER_INFO_3] = new StaticText("Killed enemies: " + (killedMumies+killedSkeletons), canvas.width/4, 330, "Cambria", 20, "white");
-        gameObjects[GAME_OVER_INFO_3].start();
-    gameObjects[GAME_OVER_INFO_4] = new StaticText("Mumies: " + killedMumies, canvas.width/4, 360, "Cambria", 20, "white");
-        gameObjects[GAME_OVER_INFO_4].start();
-    gameObjects[GAME_OVER_INFO_5] = new StaticText("Skeletons: " + killedSkeletons, canvas.width/4, 390, "Cambria", 20, "white");
-        gameObjects[GAME_OVER_INFO_5].start();
-    gameObjects[GAME_OVER_INFO_6] = new StaticText("Points from coins: " + (earnedCoins*100), canvas.width/4, 420, "Cambria", 20, "white");
-        gameObjects[GAME_OVER_INFO_6].start();
-    gameObjects[GAME_OVER_INFO_7] = new StaticText("("+ earnedCoins + " coins)", canvas.width/4, 450, "Cambria", 20, "white");
-       gameObjects[GAME_OVER_INFO_7].start();
+   gameObjects[LOSE_MESSAGE] = new StaticText("GAME OVER!", canvas.width/5, 60, "Cambria", 36, "red");
+       gameObjects[LOSE_MESSAGE].start();
+   gameObjects[GAME_OVER_INFO_1] = new StaticText("TOTAL POINTS: "+totalPoints, canvas.width/6, 90, "Cambria", 26, "white");
+       gameObjects[GAME_OVER_INFO_1].start();
+   gameObjects[GAME_OVER_INFO_2] = new StaticText("Fired bullets: " + numberOfBulletsFired, canvas.width/8, 120, "Cambria", 17, "white");
+       gameObjects[GAME_OVER_INFO_2].start();
+   gameObjects[GAME_OVER_INFO_3] = new StaticText("Killed enemies: " + (killedMumies+killedSkeletons), canvas.width/2, 120, "Cambria", 17, "white");
+       gameObjects[GAME_OVER_INFO_3].start();
+   gameObjects[GAME_OVER_INFO_4] = new StaticText("Mumies: " + killedMumies, canvas.width/8, 140, "Cambria", 17, "white");
+       gameObjects[GAME_OVER_INFO_4].start();
+   gameObjects[GAME_OVER_INFO_5] = new StaticText("Skeletons: " + killedSkeletons, canvas.width/2, 140, "Cambria", 17, "white");
+       gameObjects[GAME_OVER_INFO_5].start();
+   gameObjects[GAME_OVER_INFO_6] = new StaticText("Points from coins: " + (earnedCoins*100) + " ("+ earnedCoins + " coins)", canvas.width/8, 160, "Cambria", 17, "white");
+       gameObjects[GAME_OVER_INFO_6].start();
+   gameObjects[GAME_OVER_INFO_7] = new StaticText("RANKING", canvas.width/3, 220, "Cambria", 22, "red");
+      gameObjects[GAME_OVER_INFO_7].start();
 
+ranking(totalPoints);
 
+ }
+
+function ranking(totalPoints) {
+     let storedNames = JSON.parse(localStorage.getItem("storedNames"));
+     let storedScores = JSON.parse(localStorage.getItem("storedScores"));
+
+        if(storedNames !== null && storedScores !== null && setResult === false) {
+            for(let i = 0; i < storedNames.length; i++) {
+               if(totalPoints > storedScores[i]){
+                    storedScores.splice(i,0,totalPoints);
+                    storedNames.splice(i,0,playerName);
+                    localStorage.setItem("storedNames", JSON.stringify(storedNames));
+                    localStorage.setItem("storedScores", JSON.stringify(storedScores));
+                    setResult = true;
+                    break;
+               }
+            }
+            if(setResult === false && storedNames.length < 10) {
+                storedNames.push(playerName);
+                storedScores.push(totalPoints);
+                localStorage.setItem("storedNames", JSON.stringify(storedNames));
+                localStorage.setItem("storedScores", JSON.stringify(storedScores));
+                setResult = true;
+            }
+            else if(setResult === false) {
+                setResult = true;
+            }
+        } else if(storedNames === null && setResult === false) {
+            let names = [];
+            let scores = [];
+            names[0] = playerName;
+            scores[0] = totalPoints;
+            localStorage.setItem("storedNames", JSON.stringify(names));
+            localStorage.setItem("storedScores", JSON.stringify(scores));
+            setResult = true;
+        }
+
+      storedNames = JSON.parse(localStorage.getItem("storedNames"));
+      storedScores = JSON.parse(localStorage.getItem("storedScores"));
+
+   if(stop === false) {
+    for(let k = 0; k < storedNames.length; k++) {
+        rankingArray[k] = new StaticText((k+1)+". "+storedNames[k]+" - "+storedScores[k], canvas.width/4, 250+(25*k), "Cambria", 19, "white");
+         if(k === storedNames.length) {
+             stop = true;
+             break;
+         }
+      }
+    }
 }
+

@@ -119,6 +119,10 @@ class CriminalCanvasGame extends CanvasGame
         {
             coins[e].render();
         }
+         for (let f = 0; f < rankingArray.length; f++)
+        {
+            rankingArray[f].render();
+        }
 
     }
 }
