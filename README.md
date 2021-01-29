@@ -26,6 +26,7 @@ mumia: 200, 500, 1000, 3000
 skeleton and bonuses: 500, 1000, 3000, 7000
 player: 300, 1000, 3000
 - Total points, numberOfBulletsFired, Killed enemies broken down by type (mumia/skeleton), earnedCoins  are counted and displayed at the end of the game
+- Ranking in localstorage (top10)
 
 
 ### Technologies
